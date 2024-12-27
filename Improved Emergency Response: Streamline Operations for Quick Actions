@@ -1,0 +1,14 @@
+// frontend/src/App.js - Trigger alert based on high-density traffic
+useEffect(() => {
+    const fetchAnomalies = () => {
+        fetch("http://localhost:5000/api/anomalies", { method: "POST" })
+            .then(res => res.json())
+            .then(data => {
+                if (data.anomalies.length > 0) {
+                    alert("Suspicious Activity Detected: High Traffic in sensitive zones.");
+                    // Additional emergency response actions can be added here
+                }
+            });
+    };
+    fetchAnomalies();
+}, [trafficData]);
