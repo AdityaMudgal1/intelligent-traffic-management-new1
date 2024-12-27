@@ -1,0 +1,17 @@
+// frontend/src/App.js - Sorting traffic based on density
+const sortedTrafficData = [...trafficData].sort((a, b) =>
+    a.trafficDensity.localeCompare(b.trafficDensity)
+);
+
+return (
+    <div>
+        <h1>Real-Time Traffic Monitoring</h1>
+        <ul>
+            {sortedTrafficData.map((item, idx) => (
+                <li key={idx}>
+                    Location: {item.location}, Density: {item.trafficDensity}, Time: {new Date(item.timestamp).toLocaleString()}
+                </li>
+            ))}
+        </ul>
+    </div>
+);
