@@ -1,0 +1,18 @@
+// backend/server.js - Add the following POST route
+app.post("/api/anomalies", (req, res) => {
+    const anomalies = trafficData.filter(data => data.trafficDensity === "High");
+    res.json({ anomalies });
+});
+// frontend/src/App.js - Update the useEffect hook
+useEffect(() => {
+    const fetchAnomalies = () => {
+        fetch("http://localhost:5000/api/anomalies", { method: "POST" })
+            .then(res => res.json())
+            .then(data => {
+                if (data.anomalies.length > 0) {
+                    alert("Suspicious Activity Detected: High Traffic in sensitive zones.");
+                }
+            });
+    };
+    fetchAnomalies();
+}, [trafficData]);
