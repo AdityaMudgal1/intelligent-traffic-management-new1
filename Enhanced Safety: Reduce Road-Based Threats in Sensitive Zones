@@ -1,0 +1,22 @@
+// frontend/src/App.js - Highlight "High" traffic density areas
+const sortedTrafficData = [...trafficData].sort((a, b) =>
+    a.trafficDensity.localeCompare(b.trafficDensity)
+);
+
+return (
+    <div>
+        <h1>Real-Time Traffic Monitoring</h1>
+        <ul>
+            {sortedTrafficData.map((item, idx) => (
+                <li
+                    key={idx}
+                    style={{
+                        color: item.trafficDensity === "High" ? "red" : "black",
+                    }}
+                >
+                    Location: {item.location}, Density: {item.trafficDensity}, Time: {new Date(item.timestamp).toLocaleString()}
+                </li>
+            ))}
+        </ul>
+    </div>
+);
